@@ -11,7 +11,7 @@ on:
     inputs:
       MANIFEST_BRANCH:
         description: 'OrangeFox Manifest Branch'
-        required: true
+        required: false
         default: '12.1'
         type: choice
         options:
@@ -67,7 +67,7 @@ jobs:
     - name: Build Environment
       run: |
         sudo apt install aria2 -y
-        git clone  git clone https://github.com/akhilnarang/scripts -b master
+        git clone  git clone git clone https://gitlab.com/OrangeFox/misc/scripts -b master
         cd scripts
         sudo bash setup/android_build_env.sh
       
@@ -79,8 +79,8 @@ jobs:
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
         git clone https://github.com/ninja-ninja-arch/ofox-sync.git -b master sync
-        cd sync/legacy
-        ./get_fox_10.sh --branch ${{ inputs.MANIFEST_BRANCH }} --path ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
+        cd sync
+        ./get_fox_10.sh  --path ${GITHUB_WORKSPACE}/OrangeFox/fox_$
 
     - name: Clone Device Tree
       run: |
@@ -96,7 +96,7 @@ jobs:
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         set -e
-        lunch twrp_${{ inputs.DEVICE_NAME }}-eng && mka adbd ${{ inputs.BUILD_TARGET }}image
+        lunch omni_${{ inputs.DEVICE_NAME }}-eng && mka adbd ${{ inputs.BUILD_TARGET }}image
 
     - name: Set Release Properties
       run: |

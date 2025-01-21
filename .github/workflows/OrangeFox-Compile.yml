@@ -67,7 +67,7 @@ jobs:
     - name: Build Environment
       run: |
         sudo apt install aria2 -y
-        git clone https://gitlab.com/OrangeFox/misc/scripts.git -b master
+        git clone  git clone https://github.com/akhilnarang/scripts -b master
         cd scripts
         sudo bash setup/android_build_env.sh
       
@@ -78,7 +78,7 @@ jobs:
         cd ${GITHUB_WORKSPACE}/OrangeFox
         git config --global user.name "${{ github.actor }}"
         git config --global user.email "${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com"
-        git clone https://gitlab.com/OrangeFox/sync.git -b master
+        git clone https://github.com/ninja-ninja-arch/ofox-sync.git -b master sync
         cd sync/legacy
         ./get_fox_10.sh --branch ${{ inputs.MANIFEST_BRANCH }} --path ${GITHUB_WORKSPACE}/OrangeFox/fox_${{ inputs.MANIFEST_BRANCH }}
 
